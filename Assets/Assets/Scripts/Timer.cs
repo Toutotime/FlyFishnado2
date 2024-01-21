@@ -6,47 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    float currentTime;
+    public float currentTime;
     public float startingTime = 10f;
     [SerializeField] Text countdownText;
 
-    public int basicScore;
+    //public GameManager manager;
+    //need to get score from gamemanager script to compare when timer ends
+    public int score;
 
-
-    public GameObject winBox;
-    public GameObject loseBox;
-
-    // Start is called before the first frame update
     void Start()
     {
-        currentTime = startingTime;
-        
-
+        currentTime = startingTime;    
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        currentTime += 1 * Time.deltaTime;
+        currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
+       // score = GetComponent<GameManager>().CurrentScore();
 
-        if(currentTime >= 0)
+        if (currentTime <= 0)
         {
             currentTime = 0;
-
-            if (basicScore <= 5)
+         if ( score <= 10)
             {
-                 SceneManager.LoadScene("EndScreens");
-              
+               SceneManager.LoadScene("WinScreen");
             }
-
-            else 
+        else
             {
-                SceneManager.LoadScene("EndScreens");
-               
+                SceneManager.LoadScene("Lose Scene");
             }
-
-            //Enter  IF/ELSE SCORE AND END SCREENS
-        }
+        }  
     }
 }

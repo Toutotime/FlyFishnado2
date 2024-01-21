@@ -8,7 +8,7 @@ public class BootFaller : MonoBehaviour
 
     public float speed = 5f;
     public GameManager manager;
-    public int basicScore = -1;
+    public int basicScore = 1;
     
     Vector3 screenHeight;
     float currentScreenHeight;
@@ -40,7 +40,6 @@ public class BootFaller : MonoBehaviour
                 manager.IncreaseScore(basicScore);
             }
             
-
             Destroy(this.gameObject);
             
         }
